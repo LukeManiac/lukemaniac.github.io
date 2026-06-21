@@ -192,6 +192,7 @@ li {
   overflow: visible;
   opacity: 0;
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 
 .util-item.open .util-readme {
@@ -201,6 +202,10 @@ li {
 
 .util-header {
   cursor: default;
+}
+
+.util-header h2 {
+  cursor: pointer;
 }
 
 .util-click-area {

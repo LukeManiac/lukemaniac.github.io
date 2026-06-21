@@ -79,6 +79,20 @@ document.querySelectorAll('.util-item').forEach(item => {
     item.style.transformOrigin = 'center';
   });
 
+  readme.addEventListener('click', (e) => {
+    // prevent accidental link/button interference
+    if (e.target.closest('a, button')) return;
+
+    const isOpen = item.classList.contains('open');
+    if (!isOpen) return;
+
+    // close this item
+    item.classList.remove('open');
+    readme.style.height = '0px';
+
+    // reset menu state (for arrow etc if needed)
+    arrow.style.transform = 'rotate(0deg)';
+  });
 });
 
 document.querySelectorAll('.glass').forEach(el => {
