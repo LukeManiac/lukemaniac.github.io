@@ -52,6 +52,7 @@ document.querySelectorAll('.util-item').forEach(item => {
       const openReadme = openItem.querySelector('.util-readme');
       openItem.classList.remove('open');
       openReadme.style.height = "0px";
+      openItem.style.transformOrigin = "center";
     });
 
     // open current if closed
@@ -59,5 +60,34 @@ document.querySelectorAll('.util-item').forEach(item => {
       item.classList.add('open');
       readme.style.height = readme.scrollHeight + "px";
     }
+  });
+
+  // MAGNETIC transform origin (cursor-based zoom pivot)
+  item.addEventListener('mousemove', (e) => {
+    const rect = item.getBoundingClientRect();
+
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    const originX = ((1 - x) * 100).toFixed(1) + '%';
+    const originY = ((1 - y) * 100).toFixed(1) + '%';
+
+    item.style.transformOrigin = `${originX} ${originY}`;
+  });
+
+  item.addEventListener('mouseleave', () => {
+    item.style.transformOrigin = 'center';
+  });
+
+});
+
+document.querySelectorAll('.glass').forEach(el => {
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    el.style.setProperty('--x', x + '%');
+    el.style.setProperty('--y', y + '%');
   });
 });
