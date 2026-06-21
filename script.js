@@ -31,12 +31,33 @@ toggleBtn.addEventListener('click', () => {
 });
 
 document.querySelectorAll('.util-item').forEach(item => {
-  item.style.cursor = "pointer";
+  const header = item.querySelector('.util-header');
+  const clickArea = item.querySelector('.util-click-area');
+  const readme = item.querySelector('.util-readme');
 
-  item.addEventListener('click', () => {
+  // OPEN URL when clicking title
+  header.addEventListener('click', (e) => {
     const url = item.getAttribute('data-url');
-    if (url) {
-      window.open(url, "_blank");
+    if (url) window.open(url, "_blank");
+  });
+
+  // TOGGLE README when clicking body
+  clickArea.addEventListener('click', (e) => {
+    if (e.target.closest('button, a, .util-header')) return;
+
+    const isOpen = item.classList.contains('open');
+
+    // close all others
+    document.querySelectorAll('.util-item.open').forEach(openItem => {
+      const openReadme = openItem.querySelector('.util-readme');
+      openItem.classList.remove('open');
+      openReadme.style.height = "0px";
+    });
+
+    // open current if closed
+    if (!isOpen) {
+      item.classList.add('open');
+      readme.style.height = readme.scrollHeight + "px";
     }
   });
 });

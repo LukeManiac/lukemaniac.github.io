@@ -38,8 +38,8 @@ body {
 }
 
 .container {
-  width: min(900px, 92%);
-  margin: 60px auto;
+  width: min(1000px, 92%);
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -57,6 +57,10 @@ body {
   opacity: 1;
 }
 
+.glass.card {
+  margin-bottom: 15px;
+}
+
 .link-card {
   text-decoration: none;
   color: white;
@@ -64,6 +68,15 @@ body {
 
 h1 { font-size: 22px; margin-bottom: 10px; }
 h2 { font-size: 18px; margin-bottom: 8px; }
+
+ul {
+  padding-left: 20px;
+  margin-left: 0;
+}
+
+li {
+  margin-bottom: 6px;
+}
 
 .header-btn {
   display: flex;
@@ -85,7 +98,15 @@ h2 { font-size: 18px; margin-bottom: 8px; }
 }
 
 .util-menu.open {
-  max-height: 2000px;
+  max-height: 10000px;
+  overflow: visible;
+}
+
+.util-menu-inner {
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .util-item {
@@ -100,8 +121,73 @@ h2 { font-size: 18px; margin-bottom: 8px; }
   opacity: 1;
 }
 
+.util-item .card {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.util-item section.glass {
+  margin-top: 10px;
+}
+
+.util-item:hover, .glass:hover {
+  position: relative;
+  z-index: 10;
+}
+
+.util-readme {
+  max-height: 0;
+  overflow: visible;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.util-item.open .util-readme {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.util-header {
+  cursor: default;
+}
+
+.util-click-area {
+  cursor: pointer;
+}
+
+.util-header h2 {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.5s ease;
+}
+
+.util-header h2:hover {
+  opacity: 0.8;
+}
+
+.util-preview {
+  max-height: 60px;
+  opacity: 0.8;
+  font-style: italic;
+  padding: 10px 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.util-item.open .util-preview {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.util-preview {
+  opacity: 0.8;
+  font-style: italic;
+  padding: 10px 0;
+}
+
 .glass:hover {
   background: rgba(255, 255, 255, 0.12);
-  transform: scale(1.01);
   transition: 0.3s ease;
 }
